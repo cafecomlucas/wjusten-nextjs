@@ -44,3 +44,29 @@ Sobre a resposta 2, em versões anteriores do eslint existia uma opção "To che
 Sobre a resposta 8, como o yarn está sendo utilizado, a instalação pelo npm foi cancelada e com a lista da configuração os pacotes foram instalados manualmente com o comando `yarn add --dev ...`.
 
 ---
+
+## Configurando o ESLint (adicional)
+
+Alguns plugins e configurações podem ser adicionados durante o projeto, e existem alguns deles que já podem ser configurados no início.
+
+Foi instalado o plugin do React Hooks pro ESLint (`eslint-plugin-react-hooks`), que verifica se os hooks estão sendo utilizados da forma correta, se o useEffect está sendo passado de forma certa, etc.
+
+Na configuração, o plugin pode ser setado direto na prop `extends` ou nas props `plugins` + `rules` para configurações mais específicas. Optamos pela segunda opção. Para definir as regras `rules-of-hooks` e `exhaustive-deps` foi copiado o trecho dessas regras da documentação.
+
+Como o TypeScript vai ser o responsável pela parte de tipos, a regra do propTypes foi desativada.
+
+Como o NextJs possui a variável `React` como global para todos os arquivos, não é necessário importa-la, por isso a regra `react/react-in-jsx-scope` foi desativada.
+
+Como o TypeScript possui a inferência de tipos, não é necessário tipar o retorno de funções exportadas onde o TypeScript já entende qual é o tipo. Por isso a regra `@typescript-eslint/explicit-module-boundary-types` foi desligada. Isso evita que o TypeScript fica verboso. (Ainda continua sendo necessário tipar o retorno quando o TypeScript não conseguir inferir).
+
+Também foi necessário setar a versão do React como `detect` nas configurações para o ESLint conseguir ter um parâmetro antes de verificar os arquivos.
+
+No `package.json` foi adicionado o comando `"lint": "eslint src"` para que o lint seja verificado com o comando `yarn lint` - que verifica se existem erros, se existir - informa os erros, se passar - concluí a verificação com sucesso.
+
+Para verificação automatica ser feita enquanto o código está sendo criado foi instalado o plugin do ESLint no VSCode.
+
+Obs 1: a configuração foi feita no arquivo `eslint.config.mjs` que é a nova maneira. Utilizar o arquivo `.eslintrc` se tornou obsoleto.
+
+Obs 2: as linhas `tseslint.configs.recommended` e `pluginReact.configs.flat.recommended` foram movidas pro topo para poderem ser sobrescritas pela prop `rules`.
+
+---
