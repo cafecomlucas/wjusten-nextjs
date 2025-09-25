@@ -23,3 +23,24 @@ O arquivo `index.js` foi alterado para `index.tsx` (ao invés de `ts`, por ser u
 Foi criado o arquivo `.editorconfig` para setar as configurações de indentação, tipos de final de linha, charset, etc. Mesmo com o Prettier configurado depois, é interessante ter o editor config para os novos arquivos já "iniciarem" com a formatação correta, ao invés de começar com uma formatação que pode ser errada pra depois ser corrigida. É bom pra manter o padrão desde o início.
 
 ---
+
+## Configurando o ESLint
+
+O ESLint analisa o código enquanto está sendo digitado (variáveis, métodos, hooks), sublinhando os erros quando necessário. Pode ser utilizado com o plugin no VS Code ou sem o plugin (nesse caso é necessário rodar um comando).
+
+O ESLint foi instalado através do comando `npx eslint --init` que executa o binário direto do repositório com as perguntas de configuração.
+
+- Resposta 1: JavaScript
+- Resposta 2: To check syntax and find problems
+- Resposta 3: JavaScript modules (import/export) (esm)
+- Resposta 4: React
+- Resposta 5: Yes (TypeScript)
+- Resposta 6: Browser
+- Resposta 7: js (config file)
+- Resposta 8: No (install dependencies with npm)
+
+Sobre a resposta 2, em versões anteriores do eslint existia uma opção "To check syntax, find problems and enforce code style", que não seria selecionada pois a formatação vai ser feita através do Prettier.
+
+Sobre a resposta 8, como o yarn está sendo utilizado, a instalação pelo npm foi cancelada e com a lista da configuração os pacotes foram instalados manualmente com o comando `yarn add --dev ...`.
+
+---
