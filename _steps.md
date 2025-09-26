@@ -70,3 +70,31 @@ Obs 1: a configuração foi feita no arquivo `eslint.config.mjs` que é a nova m
 Obs 2: as linhas `tseslint.configs.recommended` e `pluginReact.configs.flat.recommended` foram movidas pro topo para poderem ser sobrescritas pela prop `rules`.
 
 ---
+
+## Configurando o Prettier
+
+O Prettier funciona como um verificador/formatador do texto digitado, setando regras visuais como espaçamento, tipos de aspas, etc. É diferente do Linter (como o ESLint) que verifica/corrige a qualidade do código (hooks, forma de importação, etc), auxiliando na prevenção de bugs.
+
+Olhando a documentação, foi feita a instalação do Prettier com o comando:
+
+```sh
+yarn add --dev --exact prettier
+```
+
+Depois foi criado o arquivo `.prettierrc` setando as configurações do Prettier que são fora do padrão. Regras: sem vírgula ao final de um último item (prop `traillingComma`), sem ponto e vírgula ao final de uma linha/comando (prop `semi`) e aspas simples ao invés de aspas duplas (prop `singleQuote`).
+
+É possível executar o Prettier através da linha de comando, através de um plugin do VSCode ou através de um plugin pro ESLint (e mudanças manuais nas configs do VSCode). A configuração feita é para funcionar junto com o ESLint (então não foi necessário instalar o plugin do VSCode).
+
+Para rodar o Prettier como uma regra do ESLint, instalamos os plugins `eslint-config-prettier` e `eslint-plugin-prettier`.
+
+```sh
+yarn add --dev eslint-config-prettier eslint-plugin-prettier
+```
+
+O plugin `eslint-plugin-prettier` foi adicionado as configurações do ESLint em `eslint.config.mjs`, ele habilita o prettier e ativa o outro plugin (`eslint-config-prettier`). Obs: tentei só com o `eslint-config-prettier` por estar na doc mais atual, mas não funcionou, tive que instalar/importar o `eslint-plugin-prettier`.
+
+Nesse ponto os erros já eram sublinhados no `index.tsc`, mas o arquivo ainda não se auto-corrigia ao salvar.
+
+Por último foi criado o arquivo `.vscode/settings.json`, desativando a formatação padrão do editor (editor.formatOnSave) e ativando a formatação pelo eslint (source.fixAll.eslint).
+
+---
