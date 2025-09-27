@@ -98,3 +98,31 @@ Nesse ponto os erros já eram sublinhados no `index.tsc`, mas o arquivo ainda n�
 Por último foi criado o arquivo `.vscode/settings.json`, desativando a formatação padrão do editor (editor.formatOnSave) e ativando a formatação pelo eslint (source.fixAll.eslint).
 
 ---
+
+## Configurando Git Hooks
+
+Com os Hooks do Git é possível disparar certos comandos antes de ações importantes (como commit, push, merge) e interromper o fluxo, previnindo erros (de lint, test, etc) na base de código e evitando commits de "fix lint".
+
+Para a configuração do Git Hook é utilizado o Husky e para a configuração dos comandos que serão executados antes do commit (em staged) é utilizado o `lint-staged`.
+
+
+Para instalar e inicializar o Husky (fonte: doc):
+
+```sh
+yarn dev husky
+npx husky init
+```
+
+Foi criada a pasta `.husky` com um arquivo chamado `pre-commit`, onde vão todos os comandos necessários antes de um commit.
+
+Para instalar o lint-staged (fonte: doc):
+
+```sh
+yarn add --dev lint-staged
+```
+
+Com o lint-staged adicionado, o script "lint-staged" foi adicionado no `package.json` e no arquivo `pre-commit` do Husky foi adicionada a linha do terminal para executar o script "lint-staged" (com `--no-install` pra não precisar instalar o pacote `lint-staged` toda vez que executar).
+
+Também foi adicionado o parâmetro `--max-warnings=0` ao script "lint" do `package.json` para que "warnings" também interrompam o fluxo.
+
+---
