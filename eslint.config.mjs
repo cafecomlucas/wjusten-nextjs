@@ -1,19 +1,20 @@
-import js from '@eslint/js'
-import globals from 'globals'
-import tseslint from 'typescript-eslint'
-import pluginReact from 'eslint-plugin-react'
+import eslint from '@eslint/js'
 import { defineConfig } from 'eslint/config'
-import reactHooks from 'eslint-plugin-react-hooks'
+import tseslint from 'typescript-eslint'
+import globals from 'globals'
+import esLintPluginReact from 'eslint-plugin-react'
+import esLintPluginReactHooks from 'eslint-plugin-react-hooks'
 import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended'
 
 export default defineConfig([
+  eslint.configs.recommended,
   tseslint.configs.recommended,
-  pluginReact.configs.flat.recommended,
+  esLintPluginReact.configs.flat.recommended,
+  esLintPluginReact.configs.flat['jsx-runtime'],
   eslintPluginPrettierRecommended,
   {
     files: ['**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
-    plugins: { js, 'react-hooks': reactHooks },
-    extends: ['js/recommended'],
+    plugins: { 'react-hooks': esLintPluginReactHooks },
     settings: {
       react: {
         version: 'detect'

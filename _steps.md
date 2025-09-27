@@ -126,3 +126,10 @@ Com o lint-staged adicionado, o script "lint-staged" foi adicionado no `package.
 Também foi adicionado o parâmetro `--max-warnings=0` ao script "lint" do `package.json` para que "warnings" também interrompam o fluxo.
 
 ---
+
+## Configurando o ESLint (ajuste)
+
+A indicação de erros pelo ESLint estava duplicada com a indicação de erros do TypeScript, então foi feito um ajuste no arquivo de configuração (estava faltando importar as configs recomendadas do eslint).
+
+
+---
