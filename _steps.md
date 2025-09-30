@@ -131,5 +131,41 @@ Também foi adicionado o parâmetro `--max-warnings=0` ao script "lint" do `pack
 
 A indicação de erros pelo ESLint estava duplicada com a indicação de erros do TypeScript, então foi feito um ajuste no arquivo de configuração (estava faltando importar as configs recomendadas do eslint).
 
+---
+
+## Configurando os testes | Jest
+
+https://nextjs.org/docs/pages/guides/testing/jest
+
+### Pacotes instalados:
+
+Para trabalhar com os testes foi necessário instalar os seguintes pacotes:
+
+***`jest`***: O framework de testes.
+
+***`@types-jest`***: Fornece a tipagem para as variáveis do Jest.
+
+***ts-node***: Dependencia do Jest. Motor de execução TypeScript utilizado pelo Jest para rodar o arquivo de configuração (`jest.config.ts` - no tutorial antigo ainda era `.js`). Segundo os DOCs do jest e do nextjs desse momento, é necessário ter esse pacote instalado no projeto pois não é uma dependência padrão do jest.
+
+
+### Atualização/Criação de arquivos de configuração
+
+Para definir a configuração do jest foi criado o arquivo `jest.config.ts`, onde foi definido: a ativação da cobertura de testes (`collectCoverage`) e a pasta da cobertura de testes (`collectCoverageFrom`). Obs 1: a config das pastas ignoradas pelo jest (`testPathIgnorePatterns`) não precisou ser criada pois essa versão do Next já configura isso com o `createJestConfig` do pacote `next/jest`. Obs 2: essa configuração poderia ser feita com o comando `yarn create jest`, mas gera um arquivo cheio de comentários, então o arquivo foi feito na mão.
+
+Para não ser necessário fazer a importação das variáveis do Jest em cada arquivo de teste, as variáveis globais do jest: foram adicionadas as configs do eslint (`eslint.config.mjs`). Obs: em versões anteriores do ESLint essa config era setada na prop "env" do arquivo `.eslintrc`.
+    
+Para os testes rodarem via CLI: o trecho `"test": "jest"` foi adicionado ao `package.json`.
+
+Rodei o comando `yarn test` no terminal, que chamou o jest com sucesso e indicou erro nos testes (pois nenhum teste foi escrito nessa etapa).
+
+### Pacotes não instalados (já vem padrão nessa versão do Next)
+
+No tutorial antigo esses pacotes precisaram ser instalados, mas não foi necessário pois vi que a versão atual do Next já utiliza eles por padrão:
+
+***`next/babel`***: Config padrão do Next para o Babel.
+
+***`next/jest`***: Config padrão do Next para o Jest.
+
+***`@babel/preset-typescript`***: Config padrão do Next para tipagem do Babel.
 
 ---

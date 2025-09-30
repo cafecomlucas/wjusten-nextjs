@@ -20,7 +20,12 @@ export default defineConfig([
         version: 'detect'
       }
     },
-    languageOptions: { globals: globals.browser },
+    languageOptions: {
+      globals: {
+        ...globals.browser,
+        ...globals.jest
+      }
+    },
     rules: {
       'react-hooks/rules-of-hooks': 'error',
       'react-hooks/exhaustive-deps': 'warn',
