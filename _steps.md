@@ -193,8 +193,6 @@ Feito seguindo o tutorial (antigo) e as docs do Next / Jest / Testing Library.
 
 ***Testes***: no "test:watch" foi adicionado o monitoramento de arquivos alterados  (`jest --watch`).
 
-Obs: No tutorial é adicionado o parâmetro `--findRelatedTests` com o argumento de evitar que os testes executem de novo ao salvar qualquer arquivo (e quebrem), porém, ao checar a doc, não fez sentido utiliza-lo pois é necessário passar nomes de arquivos (e sem isso, executando direto na linha de comando ocorre um erro - `The --findRelatedTests option requires file paths to be specified.`).
-
 ### Refs:
 
 [NextJS com Jest](https://nextjs.org/docs/app/guides/testing/jest)
@@ -202,5 +200,24 @@ Obs: No tutorial é adicionado o parâmetro `--findRelatedTests` com o argumento
 [NextJS com Babel](https://nextjs.org/docs/pages/guides/babel)
 
 [React Testing Library > Cheatsheet](https://github.com/testing-library/react-testing-library/raw/main/other/cheat-sheet.pdf)
+
+---
+
+## Criação do primeiro teste
+
+### Novos arquivos
+
+Arquivo do componente Main (`Main/index.tsx`) criado com uma `<div />` vazia.
+
+Arquivo de teste (`Main/test.tsx`) criado com o teste que espera a renderização do cabeçalho com o texto "react avançado" (letras podem ser maiúsculas ou minúsculas - `/i`).
+
+Após a criação do teste, o cabeçalho foi adicionado no componente Main (princípio do TDD - teste primeiro, código depois).
+
+
+### Configs adicionais do package.json:
+
+***Hooks***: no "lint-staged" foi adicionado o script de testes, com o parâmetro de interromper a execução no primeiro teste com erro (`jest --bail`).
+
+Obs: No tutorial é adicionado o parâmetro `--findRelatedTests` com o argumento de evitar que os testes executem de novo ao salvar qualquer arquivo (e quebrem), porém, ao checar a doc, não fez sentido utiliza-lo pois é necessário passar nomes de arquivos (e sem isso, executando direto na linha de comando ocorre um erro - `The --findRelatedTests option requires file paths to be specified.`). O que ocorreu comigo foi que ao tentar fazer o commit da config adicional do "lint-staged" acima sem adicionar o arquivo de teste em staged, o jest é executado no contexto do que está em staged, e ocorre o erro (por não existirem testes nesse contexto - ou seja, ao executar `yarn test` direto pelo terminal passa mesmo sem o arquivo de teste em staged).
 
 ---
