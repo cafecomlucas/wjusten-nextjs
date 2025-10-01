@@ -169,3 +169,38 @@ No tutorial antigo esses pacotes precisaram ser instalados, mas não foi necess�
 ***`@babel/preset-typescript`***: Config padrão do Next para tipagem do Babel.
 
 ---
+
+## Configurando os testes | DOM
+
+Feito seguindo o tutorial (antigo) e as docs do Next / Jest / Testing Library.
+
+### Complementos pro Jest:
+
+***`jest-environment-jsdom`***: Biblioteca que simula um ambiente de desenvolvimento do browser (com elementos do DOM). Vinha junto com o Jest em versões antigas (Instalação desse pacote individual necessária a parte a partir do Jest 28+).
+
+***Pra facilitar testes com o Dom:***: Pacote `@testing-library/jest-dom` instalado. Esse pacote possui "matchers" do Jest que facilitam a verificação do Dom. Configuração feita no arquivo `jest.config.ts` pro `jest-dom` ser importado antes de qualquer teste (link pro novo arquivo de Setup `jest-setup.js`). Obs: também foram adicionadas as libs complementares `@testing-library/dom`, `@testing-library/react`.
+
+### Complementos de Lint:
+***Para o Jest Dom:***: o pacote `eslint-plugin-jest-dom` foi instalado e adicionado ao arquivo de config `eslint.config.mjs`.
+
+### Complementos de Tipagem:
+
+***Pro React DOM***: O pacote `@types/react-dom` foi instalado (TypeScript entende automaticamente).
+
+***Pro Jest***: O arquivo do TypeScript `tsconfig.json` foi modificado para incluir o arquivo de Setup `jest-setup.ts`.
+
+### Configs adicionais do package.json:
+
+***Testes***: no "test:watch" foi adicionado o monitoramento de arquivos alterados  (`jest --watch`).
+
+Obs: No tutorial é adicionado o parâmetro `--findRelatedTests` com o argumento de evitar que os testes executem de novo ao salvar qualquer arquivo (e quebrem), porém, ao checar a doc, não fez sentido utiliza-lo pois é necessário passar nomes de arquivos (e sem isso, executando direto na linha de comando ocorre um erro - `The --findRelatedTests option requires file paths to be specified.`).
+
+### Refs:
+
+[NextJS com Jest](https://nextjs.org/docs/app/guides/testing/jest)
+
+[NextJS com Babel](https://nextjs.org/docs/pages/guides/babel)
+
+[React Testing Library > Cheatsheet](https://github.com/testing-library/react-testing-library/raw/main/other/cheat-sheet.pdf)
+
+---

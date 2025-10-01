@@ -5,7 +5,7 @@ type Props = {
   title: string
 }
 
-export default function Home({ title = 'NextJS na prática' }: Props) {
+export default function Home({ title = 'NextJS na prátic' }: Props) {
   return (
     <>
       <Head>

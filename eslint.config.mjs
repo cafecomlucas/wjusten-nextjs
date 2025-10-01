@@ -5,12 +5,14 @@ import globals from 'globals'
 import esLintPluginReact from 'eslint-plugin-react'
 import esLintPluginReactHooks from 'eslint-plugin-react-hooks'
 import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended'
+import esLintPluginJestDom from 'eslint-plugin-jest-dom'
 
 export default defineConfig([
   eslint.configs.recommended,
   tseslint.configs.recommended,
   esLintPluginReact.configs.flat.recommended,
   esLintPluginReact.configs.flat['jsx-runtime'],
+  esLintPluginJestDom.configs['flat/recommended'],
   eslintPluginPrettierRecommended,
   {
     files: ['**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
