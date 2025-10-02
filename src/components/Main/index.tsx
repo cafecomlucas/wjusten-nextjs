@@ -1,6 +1,6 @@
 const Main = () => (
   <div>
-    <h1>React Avançado</h1>
+    <h2>React Avançado</h2>
   </div>
 )
 

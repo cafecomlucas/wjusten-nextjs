@@ -1,5 +1,5 @@
 import eslint from '@eslint/js'
-import { defineConfig } from 'eslint/config'
+import { defineConfig, globalIgnores } from 'eslint/config'
 import tseslint from 'typescript-eslint'
 import globals from 'globals'
 import esLintPluginReact from 'eslint-plugin-react'
@@ -13,6 +13,7 @@ export default defineConfig([
   esLintPluginReact.configs.flat.recommended,
   esLintPluginReact.configs.flat['jsx-runtime'],
   esLintPluginJestDom.configs['flat/recommended'],
+  globalIgnores(['**/*.snap']),
   eslintPluginPrettierRecommended,
   {
     files: ['**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],

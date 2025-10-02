@@ -221,3 +221,23 @@ Após a criação do teste, o cabeçalho foi adicionado no componente Main (prin
 Obs: No tutorial é adicionado o parâmetro `--findRelatedTests` com o argumento de evitar que os testes executem de novo ao salvar qualquer arquivo (e quebrem), porém, ao checar a doc, não fez sentido utiliza-lo pois é necessário passar nomes de arquivos (e sem isso, executando direto na linha de comando ocorre um erro - `The --findRelatedTests option requires file paths to be specified.`). O que ocorreu comigo foi que ao tentar fazer o commit da config adicional do "lint-staged" acima sem adicionar o arquivo de teste em staged, o jest é executado no contexto do que está em staged, e ocorre o erro (por não existirem testes nesse contexto - ou seja, ao executar `yarn test` direto pelo terminal passa mesmo sem o arquivo de teste em staged).
 
 ---
+
+## Testes | Primeiro Snapshot
+
+Os Snapshots servem para fazer uma cópia de como um arquivo fica depois de renderizado. Ao executar um teste, o registro da renderização anterior é comparado a renderização atual. O renderização anterior deve ser igual a renderização atual ou, se uma modificação for mesmo necessária, o Snapshot precisa ser atualiado pra renderização mais recente. Funcionam como uma camada extra para garantir (antes do commit) que as modificações feitas são mesmo necessárias. Obs: na primeira execução do teste o primeiro snapshot é criado automaticamente, para depois poder ser comparado nas próximas execuções.
+
+O comando `yarn test:watch` foi executado para ficar monitorando/testando os arquivos modificados.
+
+No arquivo de teste (`Main/test.tsx`) foi feita a modificação pra testar se o Snapshot está ok.
+
+No componente Main (`Main/index.tsx`) foi feita a alteração do elemento `h1` para `h2`, que foi detectada pelo monitoramento do jest. Ao executar um novo teste foi indicado um erro na linha alterada, dizendo para verificar se as modificações feitas ou atualizar o Snapshot (tecla `u`). Ao atualizar o Snapshot o teste executou de novo automaticamente e passou.
+
+Obs: Nem sempre os Snapshots são necessários. Nesse caso serviu pois a verificação do `heading` é mais genérica, mas em casos onde eu faço verificações mais específicas não preciso criar Snapshots.
+
+### Configs adicionais de Lint
+
+Foi necessário alterar as configs do ESLint (`eslint.config.mjs`) para ignorar os arquivos de Snapshot (`.snap`), pois o hook/lint-staged estava disparando um warning antes de fazer o commit, fazendo a aplicação quebrar e impedindo o commit.
+
+Ao ajustar esse warning, apareceu outro, que foi corrigido em seguida - Foi necessário ajustar o hook no `package.json`, passando pro ESLint o parâmetro `--no-warn-ignored`, para não disparar warnings de arquivos ignorados pelo Lint (que é o caso do `.snap`), assim a aplicação não quebra e o commit pode ser feito.
+
+---
