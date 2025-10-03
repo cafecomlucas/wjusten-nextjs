@@ -288,3 +288,12 @@ Segundo a DOC do Emotion desse momento não é estritamente necessário configur
 
 ---
 
+## Configuração dos caminhos absolutos
+
+Na importação, para não precisar acessar os níveis de pasta com `../../../` a cada nível, foi preciso configurar os caminhos de diretórios absolutos - pra isso foi configurado a importação por caminho absoluto e os aliases (@) dos caminhos no arquivo `ts.config.json`. Os arquivos com importações foram atualizados.
+
+### Ref:
+
+[Set up - Absolute Paths/Path Aliases (NextJS DOCs)](https://nextjs.org/docs/pages/getting-started/installation#set-up-absolute-imports-and-module-path-aliases)
+
+---
