@@ -241,3 +241,50 @@ Foi necessário alterar as configs do ESLint (`eslint.config.mjs`) para ignorar 
 Ao ajustar esse warning, apareceu outro, que foi corrigido em seguida - Foi necessário ajustar o hook no `package.json`, passando pro ESLint o parâmetro `--no-warn-ignored`, para não disparar warnings de arquivos ignorados pelo Lint (que é o caso do `.snap`), assim a aplicação não quebra e o commit pode ser feito.
 
 ---
+
+## Estilização | Configurando o Emotion
+
+Como alternativa ao `styled-components` (que está em modo de manutenção), foi utilizado o Emotion, que é bem parecido.
+
+### Instalação
+
+Para instalar o Emotion, foram adicionados alguns pacotes (dependencias normais e não de desenvolvimento):
+
+```sh
+yarn add @emotion/cache @emotion/react @emotion/styled
+```
+
+### Config do NextJS
+
+Para integrar o Emotion com o Next foi adicionado o parâmetro `emotion: true`, nas opções do compilação do arquivo `next.config.mjs`. Obs: por utilizar o Emotion junto com o Next.js a parte do SSR (processamento do CSS no servidor) já funciona.
+
+Também foi necessário criar o arquivo padrão do Next `pages/_app.tsx` com o código de implementação do Emotion e importação do CSS global.
+
+### Criação do CSS globalSS
+
+Foi criado o arquivo `styles/global.tsx` com o reset padrão do CSS.
+
+### Config do TypeScript
+
+Para integrar o TypeScript ao Emotion foi adicionada a linha `"jsxImportSource": "@emotion/react"` no arquivo `tsconfig.json`.
+
+### Config do Babel
+
+Segundo a DOC do Emotion desse momento não é estritamente necessário configurar o Babel quando se usa o TypeScript - só quando o Babel já existe no projeto e é necessário aplicar alguma regra específica do Babel.
+
+### Configs adicionais do package.json:
+
+***lint-staged***: O comando `--passWithNoTests` precisou ser adicionado pro commit poder acontecer sem erros pois os novos arquivos não possuem testes nesse momento.
+
+### Refs:
+
+[Emotion no NextJS (Emotion DOCs)](https://emotion.sh/docs/ssr#nextjs)
+
+[Config do Emotion com TS - e sem Babel (Emotion DOCs)](https://emotion.sh/docs/typescript#with-the-babel-plugin)
+
+[Exemplo do Emotion no Next (Github)](https://github.com/vercel/next.js/tree/canary/examples/with-emotion)
+
+[Componente _app customizado (NextJS DOCs)](https://nextjs.org/docs/pages/building-your-application/routing/custom-app)
+
+---
+
