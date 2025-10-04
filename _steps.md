@@ -314,7 +314,7 @@ Obs 2: a diferença principal entre o `_app` e o `_document` é que o `_app` é 
 
 ---
 
-## Estilos do primeiro Componente 
+## Componente Main | Estilos
 
 Foi criado o arquivo `Main/styles.ts` para os estilos do componente `Main` (que é importado na página inicial). Nesse arquivo foram definidas os estilos via Emotion e as exportações dos componentes.
 
@@ -325,3 +325,13 @@ Por convenção a importação do Emotion foi feita via `* as S`, assim batendo 
 Ao rodar o teste (via `yarn test:watch`) ocorreu um erro por diferença no Snapshot e como a atualização era mesmo pra acontecer o Snapshot foi atualizado (tecla `u`).
 
 Obs: Foi necessário fazer um ajuste no CSS global pra cor de fundo preencher toda a altura (`height: 100%`).
+
+---
+
+## Componente Main | Exemplo de teste no CSS
+
+É possível verificar se os estilos foram aplicados via teste com o Jest - para isso o arquivo `Main/test.tsx` foi modificado. Foi adicionado um novo it/expect com o método `toHaveStyle` pra confirmar a cor de fundo do componente `S.Wrapper`.
+
+É possível verificar vários estilos - nesse caso foi um exemplo. Esse tipo de teste se enquadra melhor em outros casos, por exemplo: o efeito `:hover` ou `:focus` de algum campo/botão/etc.
+
+---
