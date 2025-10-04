@@ -313,3 +313,15 @@ Obs 2: a diferença principal entre o `_app` e o `_document` é que o `_app` é 
 [Componente '_app'  customizado (NextJS DOCs)](https://nextjs.org/docs/pages/building-your-application/routing/custom-app)
 
 ---
+
+## Estilos do primeiro Componente 
+
+Foi criado o arquivo `Main/styles.ts` para os estilos do componente `Main` (que é importado na página inicial). Nesse arquivo foram definidas os estilos via Emotion e as exportações dos componentes.
+
+No componente `components/Main.tsx` os componentes foram importados e editados - definindo os títulos, textos, imagens e alt das imagens (pra acessibilidade).
+
+Por convenção a importação do Emotion foi feita via `* as S`, assim batendo o olho todos os componentes com `<S.` no início já são identificados como componentes que tem estilização (ex: `<S.Title>`).
+
+Ao rodar o teste (via `yarn test:watch`) ocorreu um erro por diferença no Snapshot e como a atualização era mesmo pra acontecer o Snapshot foi atualizado (tecla `u`).
+
+Obs: Foi necessário fazer um ajuste no CSS global pra cor de fundo preencher toda a altura (`height: 100%`).

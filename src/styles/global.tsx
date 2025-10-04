@@ -11,6 +11,12 @@ const resetStyles = css`
     font-size: 62.5%;
   }
 
+  html,
+  body,
+  #__next {
+    height: 100%;
+  }
+
   body {
     font-family:
       system-ui,
