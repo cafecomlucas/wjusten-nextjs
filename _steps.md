@@ -284,7 +284,7 @@ Segundo a DOC do Emotion desse momento não é estritamente necessário configur
 
 [Exemplo do Emotion no Next (Github)](https://github.com/vercel/next.js/tree/canary/examples/with-emotion)
 
-[Componente _app customizado (NextJS DOCs)](https://nextjs.org/docs/pages/building-your-application/routing/custom-app)
+[Componente '_app' customizado (NextJS DOCs)](https://nextjs.org/docs/pages/building-your-application/routing/custom-app)
 
 ---
 
@@ -295,5 +295,21 @@ Na importação, para não precisar acessar os níveis de pasta com `../../../` 
 ### Ref:
 
 [Set up - Absolute Paths/Path Aliases (NextJS DOCs)](https://nextjs.org/docs/pages/getting-started/installation#set-up-absolute-imports-and-module-path-aliases)
+
+---
+
+## Definindo Meta Tags padrão
+
+Para definir as meta informações padrão foi criado o arquivo padrão do NextJS `pages/_document.tsx` com o título, os ícones e a descrição padrão.
+
+Obs 1: No tutorial, o estilo global foi importado no `_document` por ser uma versão antiga do NextJS com o `styled-components` (e o caso desse repositório é a versão atual do NextJS com o `Emotion`).
+
+Obs 2: a diferença principal entre o `_app` e o `_document` é que o `_app` é renderizado no servidor e no cliente e o `_document` é renderizado apenas no servidor (ao checar o código fonte da página, as meta informações já aparecem pois já foram processadas no servidor). Estilos devem ser importados no `_app` de acordo com a documentação atual do NextJS.
+
+### Ref:
+
+[Componente '_document' customizado (NextJS DOCs)](https://nextjs.org/docs/pages/building-your-application/routing/custom-document)
+
+[Componente '_app'  customizado (NextJS DOCs)](https://nextjs.org/docs/pages/building-your-application/routing/custom-app)
 
 ---
