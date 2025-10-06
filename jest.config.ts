@@ -9,7 +9,8 @@ const config: Config = {
   testEnvironment: 'jsdom',
   collectCoverage: true,
   collectCoverageFrom: ['<rootDir>/src/**/*.ts(x)'],
-  setupFilesAfterEnv: ['<rootDir>/jest.setup.ts']
+  setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
+  snapshotSerializers: ['@emotion/jest/serializer']
 }
 
 export default createJestConfig(config)

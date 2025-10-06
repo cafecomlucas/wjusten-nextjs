@@ -335,3 +335,15 @@ Obs: Foi necessário fazer um ajuste no CSS global pra cor de fundo preencher to
 É possível verificar vários estilos - nesse caso foi um exemplo. Esse tipo de teste se enquadra melhor em outros casos, por exemplo: o efeito `:hover` ou `:focus` de algum campo/botão/etc.
 
 ---
+
+## Testes | Configuração de exibição do CSS nos Snapshots
+
+O CSS nos Snapshots mostrava apenas classes com nomes estranhos e não as props do CSS que foram alteradas, por isso foi necessário configurar um pacote do Emotion pra fazer a integração do Jest com o Emotion e a separação do CSS.
+
+
+Com essa integração configurada todos os estilos são importados pro Snapshot e podem ser conferidos antes do commit. O Snapshot fica um pouco maior, mas fica muito mais informativo, melhorando a atenção para alterações de estilos.
+
+Obs: Vale lembrar que os Snapshots não são utilizados em tudo, somente onde faz mais sentido utilizá-lo.
+
+---
+
