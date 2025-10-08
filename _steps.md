@@ -347,3 +347,46 @@ Obs: Vale lembrar que os Snapshots não são utilizados em tudo, somente onde fa
 
 ---
 
+## PWA | Configuração dos recursos de aplicativo local
+
+É possível configurar a aplicação para ter acesso a recursos de um aplicativo local (como notificações, acesso offline, etc) para facilitar esse processo foi adicionado o pacote `next-pwa` (baseado no pacote `workbook` do Google), que gera boa parte da configuração:
+
+```sh
+yarn add next-pwa
+```
+
+Depois foi criado o arquivo `manifest.json` padrão com os ícones e informações do aplicativo - que foram importados no cabeçalho da aplicação (`_document.tsx`).
+
+Para integrar o `next-pwa` com o `nextJS` o arquivo `next.config.js` foi alterado para importar e utilizar o `next-pwa`. Obs 1: Também foi configurado para gerar o pacote apenas no ambiente de produção e pra isso foi necessário configurar as variáveis globais do node no ESLint (arquivo `eslint.config.mjs`). Obs 2: No tutorial a importação é feita com `require` e `module.exports` (CommonJS - jeito antigo), mas consegui fazer com o `import` e `export default` (ES Modules - jeito moderno).
+
+Feito isso já seria possível gerar os arquivos de produção:
+
+```sh
+yarn build
+```
+
+Mas ocorreram erros com a definição de tipos do `minimatch`, utilizado internamente pelo `next-pwa` - isso foi confirmado removendo o `next-pwa` (que depois foi adicionado de novo). Ao pesquisar sobre o erro foi possível [encontrar um jeito de contorna-lo](https://github.com/strapi/strapi/issues/23859#issuecomment-3031795231) criando no `package.json` a config `resolutions` com versões específicas do `minimatch` e do `@types/minimatch`. Ao fazer as alterações foi possível rodar o `yarn build`.
+
+Após gerar o build de produção foi possível subir o mesmo:
+
+```sh
+yarn start
+```
+
+Ao acessar o localhost, um ícone de "Instalar aplicativo" já aparece na barra de endereços do navegador. Obs: Em versões antigas do DevTools / aba "Lighthouse" também era possível ver um ícone de `PWA`, atualmente é possível ver as configs da aplicação na aba "Application" > "manifest.json", que mostra o nome, os ícones, as funcionalidades, etc.
+
+No arquivo `.gitignore` foram adicionados os arquivos gerados automaticamente pelo `next-pwa` na geração de uma build.
+
+### Sobre o pacote pra config do PWA
+
+O [next-pwa](https://github.com/shadowwalker/next-pwa) foi utilizado por conta do tutorial e até então não está claro se ele vai ser utilizado em alguma outra parte. Após pesquisas vi que já existe uma alternativa chamada [Serwist](https://serwist.pages.dev/). Essa alternativa moderna pode ser atualizada no boilerplate futuramente.
+
+### Refs / Pesquisas
+
+[Contornando o erro do minimatch (comentário)](https://github.com/strapi/strapi/issues/23859#issuecomment-3031795231)
+
+[Página do Serwist (site)](https://serwist.pages.dev/)
+
+[Página do Serwist (github)](https://github.com/serwist/serwist)
+
+---
