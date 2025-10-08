@@ -390,3 +390,9 @@ O [next-pwa](https://github.com/shadowwalker/next-pwa) foi utilizado por conta d
 [Página do Serwist (github)](https://github.com/serwist/serwist)
 
 ---
+
+## Finalização do boilerplate
+
+O boilerplate foi finalizado e está disponível no repositório [cafecomlucas/nextjs-boilerplate](https://github.com/cafecomlucas/nextjs-boilerplate).
+
+---

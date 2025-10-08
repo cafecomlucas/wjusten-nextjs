@@ -1,6 +1,6 @@
 {
-  "name": "My Trips",
-  "short_name": "My Trips",
+  "name": "NextJS - Boilerplate",
+  "short_name": "NextJS - Boilerplate",
   "icons": [
     {
       "src": "/img/icon-192.png",
@@ -14,7 +14,7 @@
     }
   ],
   "background_color": "#06092B",
-  "description": "A simple project to show my favorite spots in the world.",
+  "description": "A simple project starter to work with TypeScript, React, NextJS and Emotion",
   "display": "fullscreen",
   "start_url": "/",
   "theme_color": "#06092B"
